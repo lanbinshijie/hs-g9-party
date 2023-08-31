@@ -1,4 +1,21 @@
 var pageStatus = 0;
+function getHighestScore(scores) {
+    let maxScore = 0;
+    let highestClass = '';
+
+    // 遍历 scores 对象的属性
+    for (let score in scores) {
+        if (scores[score] > maxScore) {
+            maxScore = scores[score];
+            highestClass = score.replace('score', 'G9-');
+        }
+    }
+    if (maxScore == 0) {
+        return "小彩蛋！"
+    }
+
+    return highestClass;
+}
 $(document).ready(function() {
     var scores = {
         score1: 0,
@@ -99,10 +116,112 @@ $(document).ready(function() {
         } else if (event.key === 'g') {
             scores.score5--;
             updateScore('score5', scores.score5);
+        } else if (event.key === 'c') {
+            var time = 0;
+            while(time < 5*100*1000) {
+                if (event.key === 'c') time++;
+                else return;
+                // console.log("haha", time)
+            }
+            scores = {
+                score1: 0,
+                score2: 0,
+                score3: 0,
+                score4: 0,
+                score5: 0
+            };
+            updateScore('score1', scores.score1);
+            updateScore('score2', scores.score2);
+            updateScore('score3', scores.score3);
+            updateScore('score4', scores.score4);
+            updateScore('score5', scores.score5);
         } else if (event.key === 'k') {
-            // 结算按钮的逻辑
-            // 在这里编写结算分数的代码
-            console.log('点击了结算按钮');
+            var delayTime = 400;
+            if (!pageStatus){
+                
+                $("#winner").text(getHighestScore(scores))
+                pageStatus = 1;
+                $(".board1").fadeOut(delayTime);
+                // 然后显示result
+                setTimeout(function() {
+                    $(".result").fadeIn(delayTime);
+                }, delayTime + 10);
+                delayTime = delayTime + 100
+                setTimeout(() => {
+                    shootStars();
+                }, delayTime + 100);
+                setTimeout(() => {
+                    shootStars();
+                }, delayTime + 200);
+                setTimeout(() => {
+                    shootStars();
+                }, delayTime + 400);
+
+                var end = Date.now() + (15 * 1000);
+                // go Buckeyes!
+                var colors = ['#bb0000', '#ffffff'];
+
+                (function frame() {
+                confetti({
+                    particleCount: 2,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 2,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+                }());
+                var duration = 20 * 1000;
+                var animationEnd = Date.now() + duration;
+                var skew = 1;
+
+                function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+                }
+
+                (function frame() {
+                var timeLeft = animationEnd - Date.now();
+                var ticks = Math.max(200, 500 * (timeLeft / duration));
+                skew = Math.max(0.8, skew - 0.001);
+
+                confetti({
+                    particleCount: 1,
+                    startVelocity: 0,
+                    ticks: ticks,
+                    origin: {
+                    x: Math.random(),
+                    // since particles fall down, skew start toward the top
+                    y: (Math.random() * skew) - 0.2
+                    },
+                    colors: ['#ffffff', '#bb0000', '#bbbb00'],
+                    shapes: ['circle'],
+                    gravity: randomInRange(0.4, 0.6),
+                    scalar: randomInRange(0.4, 1),
+                    drift: randomInRange(-0.4, 0.4)
+                });
+
+                if (timeLeft > 0) {
+                    requestAnimationFrame(frame);
+                }
+                }());
+            } else {
+                pageStatus = 0;
+                $(".result").fadeOut(delayTime);
+                // 然后显示result
+                setTimeout(function() {
+                    $(".board1").fadeIn(delayTime);
+                }, delayTime + 10);
+            }
         }
     });
 });

@@ -563,7 +563,14 @@ input::-webkit-inner-spin-button{
     display: none;
 }
 
-
+.endbox {
+    width: 50vw;
+    height: 50vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 
 
@@ -585,7 +592,7 @@ input::-webkit-inner-spin-button{
     /* display: flex;
     flex-direction: column; */
     /* padding: 24px; */
-    height: 100%;
+    /* height: 100%; */
     display: flex;
     flex-direction: column;
     margin-bottom: 18px;
