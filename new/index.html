@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./main.css">
+    <title>清澜山记分板</title>
+</head>
+<body class="dark">
+    <div class="board1">
+        <div class="head">
+            <div class="title">
+                <h3>班级计分板 Scoreboard</h3>
+            </div>
+            <div class="tooltip">
+                <p>Q~T=Add | A~G=Minus | K=End</p>
+            </div>
+        </div>
+        <div class="body">
+            <div class="box">
+                <div class="class class-1">
+                    <div class="class-name">G9-1</div>
+                    <div class="class-score" id="score1">0</div>
+                </div>
+                <div class="class class-2">
+                    <div class="class-name">G9-2</div>
+                    <div class="class-score" id="score2">0</div>
+                </div>
+                <div class="class class-3">
+                    <div class="class-name">G9-3</div>
+                    <div class="class-score" id="score3">0</div>
+                </div>
+                <div class="class class-4">
+                    <div class="class-name">G9-4</div>
+                    <div class="class-score" id="score4">0</div>
+                </div>
+                <div class="class class-5">
+                    <div class="class-name">G9-5</div>
+                    <div class="class-score" id="score5">0</div>
+                </div>
+            </div>
+
+            <div class="box">
+                <canvas class="class-sp class-1x"></canvas>
+                <canvas class="class-sp class-2x"></canvas>
+                <canvas class="class-sp class-3x"></canvas>
+                <canvas class="class-sp class-4x"></canvas>
+                <canvas class="class-sp class-5x"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="result" style="display: none;">
+        <div class="head">
+            <div class="title">
+                <h3 style="font-size: 5rem;">Result</h3>
+            </div>
+            <div class="tooltip">
+                <p>Q~T=Add | A~G=Minus | K=End</p>
+            </div>
+        </div>
+        <div class="endbox card">
+            <h3 class="title">
+                Winner
+            </h3>
+            <h5 class="title" id="winner" style="font-size: 5rem; margin-top: 60px; line-height: 5rem;">
+                G9-5
+            </h5>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>

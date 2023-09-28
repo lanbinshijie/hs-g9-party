@@ -181,7 +181,7 @@ $(document).ready(function() {
                     requestAnimationFrame(frame);
                 }
                 }());
-                var duration = 20 * 1000;
+                var duration = 120 * 1000;
                 var animationEnd = Date.now() + duration;
                 var skew = 1;
 
